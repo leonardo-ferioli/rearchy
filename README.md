@@ -7,7 +7,7 @@ Fork of [omarchy](https://github.com/basecamp/omarchy) — stripped of drivers, 
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xs/rearchy/main/boot.sh | bash
+curl -fsSL https://raw.githubusercontent.com/leonardo-ferioli/rearchy/main/boot.sh | bash
 ```
 
 ## Requirements

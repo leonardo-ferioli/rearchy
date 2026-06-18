@@ -3,7 +3,7 @@
 # Fork of omarchy (basecamp/omarchy), stripped of drivers and OS-specific setup
 
 REARCHY_REF="${REARCHY_REF:-main}"
-REARCHY_REPO="${REARCHY_REPO:-xs/rearchy}"
+REARCHY_REPO="${REARCHY_REPO:-leonardo-ferioli/rearchy}"
 REARCHY_DIR="$HOME/.local/share/rearchy"
 
 ansi_art='
