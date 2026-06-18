@@ -19,6 +19,20 @@ ansi_art='
 clear
 echo -e "$ansi_art"
 
+# Ensure git is available
+if ! command -v git &>/dev/null; then
+  echo "Installing git..."
+  if command -v pacman &>/dev/null; then
+    sudo pacman -S --noconfirm --needed git
+  elif command -v dnf &>/dev/null; then
+    sudo dnf install -y git
+  elif command -v apt-get &>/dev/null; then
+    sudo apt-get install -y git
+  else
+    echo "Error: no package manager found to install git" && exit 1
+  fi
+fi
+
 if [[ -d "$REARCHY_DIR" ]]; then
   echo "Updating rearchy..."
   git -C "$REARCHY_DIR" pull --quiet
@@ -29,4 +43,4 @@ else
 fi
 
 echo -e "\nInstallation starting..."
-source "$REARCHY_DIR/install.sh"
+bash "$REARCHY_DIR/install.sh"
