@@ -16,6 +16,7 @@ source $REARCHY_INSTALL/helpers/all.sh
 
 start_install_log
 
+run_logged $REARCHY_INSTALL/preflight/all.sh
 run_logged $REARCHY_INSTALL/config/all.sh
 run_logged $REARCHY_INSTALL/login/all.sh
 

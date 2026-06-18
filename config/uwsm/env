@@ -1,11 +1,17 @@
 # Changes require a restart to take effect.
 
-# Ensure Omarchy bins are in the path
-export OMARCHY_PATH=$HOME/.local/share/omarchy
+# Ensure rearchy bins are in the path
+export OMARCHY_PATH=$HOME/.local/share/rearchy
 export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 
 # Set default terminal and editor
 source ~/.config/uwsm/default
 
-# Activate mise if present on the system
-omarchy-cmd-present mise && eval "$(mise activate bash --shims)"
+# Activate mise based on current shell
+if command -v mise &>/dev/null; then
+  if [ -n "$FISH_VERSION" ] || [ "$(basename "$SHELL")" = "fish" ]; then
+    mise activate fish | source
+  else
+    eval "$(mise activate bash --shims)"
+  fi
+fi
