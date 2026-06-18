@@ -1,2 +1,2 @@
-# Update localdb so that locate will find everything installed
+command -v updatedb &>/dev/null || exit 0
 sudo updatedb

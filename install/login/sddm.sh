@@ -1,3 +1,8 @@
+if ! pacman -Qi sddm &>/dev/null; then
+  echo "SDDM not found — installing..."
+  omarchy-pkg-add sddm
+fi
+
 # Install rearchy SDDM theme
 SDDM_THEME_SRC="$OMARCHY_PATH/default/sddm/rearchy"
 SDDM_THEME_DEST="/usr/share/sddm/themes/rearchy"

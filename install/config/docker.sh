@@ -1,3 +1,5 @@
+command -v docker &>/dev/null || exit 0
+
 # Configure Docker daemon:
 # - limit log size to avoid running out of disk
 # - use host's DNS resolver

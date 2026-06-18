@@ -132,3 +132,5 @@ run_logged() {
 
   return $exit_code
 }
+
+export -f run_logged
