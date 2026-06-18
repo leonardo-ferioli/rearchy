@@ -1,7 +1,11 @@
 abort() {
   echo -e "\e[31mRearchy install requires: $1\e[0m"
   echo
-  gum confirm "Proceed anyway?" || exit 1
+  if [[ -t 0 ]]; then
+    gum confirm "Proceed anyway?" || exit 1
+  else
+    echo "Non-interactive mode — aborting." && exit 1
+  fi
 }
 
 # Must be any Arch-based distro
