@@ -27,8 +27,13 @@ EOF
   elif [[ -f /boot/limine.conf ]]; then
     limine_config="/boot/limine.conf"
   else
-    echo "Error: Limine config not found" >&2
-    exit 1
+    echo "Limine config not found — creating initial config..."
+    sudo mkdir -p /boot
+    sudo cp "$OMARCHY_PATH/default/limine/limine.conf" /boot/limine.conf
+    limine_config="/boot/limine.conf"
+    if command -v limine-install &>/dev/null; then
+      sudo limine-install /dev/$(lsblk -no pkname $(findmnt -n -o SOURCE /)) 2>/dev/null || true
+    fi
   fi
 
   CMDLINE=$(grep "^[[:space:]]*cmdline:" "$limine_config" | head -1 | sed 's/^[[:space:]]*cmdline:[[:space:]]*//')
@@ -96,8 +101,7 @@ if ! grep -q "^/+" /boot/limine.conf; then
 fi
 
 if ! grep -q "^/+" /boot/limine.conf; then
-  echo "Error: failed to add boot entries to /boot/limine.conf" >&2
-  exit 1
+  echo "Warning: could not add boot entries — /boot may not be a FAT32 ESP. Skipping Limine setup." >&2
 fi
 
 if [[ -n $EFI ]] && efibootmgr &>/dev/null; then
